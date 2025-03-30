@@ -1,4 +1,4 @@
-import { Qot_Common } from "futu-api";
+import { Qot_Common } from "./enum.js";
 export declare const Market: string[];
 export declare const MarketMap: {
     HK: Qot_Common.QotMarket;

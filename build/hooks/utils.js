@@ -5,7 +5,7 @@ const FUTU_CONFIG = {
     port: parseInt(process.env.FUTU_PORT || '11111'),
     useSSl: false,
     websocketPort: parseInt(process.env.FUTU_WEBSOCKET_PORT || '33333'),
-    websocketKey: process.env.FUTU_WEBSOCKET_KEY || 'futu-websocket-key',
+    websocketKey: process.env.FUTU_WEBSOCKET_KEY || 'f3c8bbd4f8a59695',
 };
 const futuClient = {
     isConnect: false,
@@ -26,13 +26,13 @@ export const connect = () => {
                         console.error('FutuOpenD connect failed:', msg);
                     }
                 };
+                console.log('FutuOpenD login:', FUTU_CONFIG.host, FUTU_CONFIG.websocketPort, FUTU_CONFIG.useSSl, FUTU_CONFIG.websocketKey);
                 futuClient.websocket.start(FUTU_CONFIG.host, FUTU_CONFIG.websocketPort, FUTU_CONFIG.useSSl, FUTU_CONFIG.websocketKey);
             }
             catch (error) {
                 reject(error);
             }
         }
-        reject(new Error('FutuOpenD already connected'));
     });
 };
 export const disconnect = () => {

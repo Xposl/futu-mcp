@@ -3,3 +3,4 @@ interface McpRequest<T> {
     arguments: T;
   }
 }
+

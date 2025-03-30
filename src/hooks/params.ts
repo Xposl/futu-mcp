@@ -1,4 +1,5 @@
-import { Qot_Common } from "futu-api"
+import { Qot_Common } from "./enum.js";
+
 
 export const Market = ['HK', 'US', 'SH', 'SZ']
 export const MarketMap = {
@@ -22,7 +23,7 @@ export const KLTypeMap = {
 
 export const getMapData = (map: Record<string, any>, key: string) => {
   const mappedKey = map[key as keyof typeof map]
-  if (mappedKey === undefined) {
+  if (mappedKey == undefined) {
     throw new Error(`Invalid key: ${key}`)
   }
   return mappedKey

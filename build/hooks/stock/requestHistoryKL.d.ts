@@ -1,4 +1,4 @@
-import { ApiRequest } from 'futu-api';
+import { ApiRequest } from "futu-api";
 export declare const name = "request_history_kl";
 export declare const toolDefine: {
     name: string;
@@ -46,10 +46,7 @@ export declare const toolDefine: {
     };
 };
 export declare const fetchRequestHistoryKL: (req: ApiRequest.RequestHistoryKL) => Promise<{
-    security: import("futu-api").Qot_Common.Security;
-    name?: string;
-    klList: Array<import("futu-api").Qot_Common.KLine>;
-    nextReqKey?: number;
+    klList: any[];
 }>;
 export declare const mcpCall: (request: McpRequest<{
     market: string;

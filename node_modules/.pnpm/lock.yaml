@@ -18,8 +18,8 @@ importers:
         specifier: ^1.11.13
         version: 1.11.13
       futu-api:
-        specifier: ^1.0.0
-        version: 1.2.9
+        specifier: ^9.1.5108
+        version: 9.1.5108
       typescript:
         specifier: ^5.0.0
         version: 5.8.2
@@ -63,14 +63,8 @@ packages:
   '@types/long@4.0.2':
     resolution: {integrity: sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA==}
 
-  '@types/node@10.17.60':
-    resolution: {integrity: sha512-F0KIgDJfy2nA3zMLmWGKxcH2ZVEtCZXHHdOQs2gSaQ27+lNeEfGxzkIw90aXswATX7AZ33tahPbzy6KAfUreVw==}
-
   '@types/node@20.17.28':
     resolution: {integrity: sha512-DHlH/fNL6Mho38jTy7/JT7sn2wnXI+wULR6PV4gy4VHLVvnrV/d3pHAMQHhc4gjdLmK2ZiPoMxzp6B3yRajLSQ==}
-
-  '@types/ws@7.2.5':
-    resolution: {integrity: sha512-4UEih9BI1nBKii385G9id1oFrSkLcClbwtDfcYj8HJLQqZVAtb/42vXVrYvRWCcufNF/a+rZD3MxNwghA7UmCg==}
 
   accepts@2.0.0:
     resolution: {integrity: sha512-5cvg6CtKwfgdmVqY1WIiXKc3Q1bkRqGLi+2W/6ao+6Y7gu/RCwRuAhGEzh5B4KlszSuTLgZYuqFqo5bImjNKng==}
@@ -208,8 +202,8 @@ packages:
   function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
 
-  futu-api@1.2.9:
-    resolution: {integrity: sha512-vUbxqV8p7d+YcXMbVcqY2vJhhuyEi2y+RFR7yJBLSKpJ/MeBDpEtRCbiDdDt74uElTUhtpilctaCdhAaYf/0pg==}
+  futu-api@9.1.5108:
+    resolution: {integrity: sha512-OSuFpImcPst4kaKnoJJXCN3W0kJZYVD78L+QbtKNiuec7GVkU6pT+9uMjrYZXBFXFRCkbzMXVj10Uberm87yzA==}
 
   get-intrinsic@1.3.0:
     resolution: {integrity: sha512-9fSjSaos/fRIVIp+xSJlE6lfwhES7LNtKaCBIamHsjr2na1BiABJPo0mOjjz8GJDURarmCPGqaiVg5mfjb98CQ==}
@@ -251,10 +245,6 @@ packages:
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
-
-  loglevel@1.6.8:
-    resolution: {integrity: sha512-bsU7+gc9AJ2SqpzxwU3+1fedl8zAntbtC5XYlt3s2j1hJcn2PsXSmgN8TaLG/J1/2mod4+cE/3vNL70/c1RNCA==}
-    engines: {node: '>= 0.6.0'}
 
   long@3.2.0:
     resolution: {integrity: sha512-ZYvPPOMqUwPoDsbJaR10iQJYnMuZhRTvHYl62ErLIEX7RgFlziSBUUvrt3OVfc47QlHHpzPZYP17g3Fv7oeJkg==}
@@ -328,8 +318,8 @@ packages:
     resolution: {integrity: sha512-ZBmhE1C9LcPoH9XZSdwiPtbPHZROwAnMy+kIFQVrnMCxY4Cudlz3gBOpzilgc0jOgRaiT3sIWfpMomW2ar2orQ==}
     engines: {node: '>=16.20.0'}
 
-  protobufjs@6.8.8:
-    resolution: {integrity: sha512-AAmHtD5pXgZfi7GMpllpO3q1Xw1OYldr+dMUlAnffGTAhqkg72WdmSY71uKBF/JuyiKs8psYbtKrhi0ASCD8qw==}
+  protobufjs@6.11.4:
+    resolution: {integrity: sha512-5kQWPaJHi1WoCpjTGszzQ32PG2F4+wRY6BmAT4Vfw56Q2FZ4YZzK20xUYQH4YkfehY1e6QSICrJquM6xXZNcrw==}
     hasBin: true
 
   proxy-addr@2.0.7:
@@ -437,18 +427,6 @@ packages:
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
 
-  ws@7.3.0:
-    resolution: {integrity: sha512-iFtXzngZVXPGgpTlP1rBqsUK82p9tKqsWRPg5L56egiljujJT3vGAYnHANvFxBieXrTFavhzhxW52jnaWV+w2w==}
-    engines: {node: '>=8.3.0'}
-    peerDependencies:
-      bufferutil: ^4.0.1
-      utf-8-validate: ^5.0.2
-    peerDependenciesMeta:
-      bufferutil:
-        optional: true
-      utf-8-validate:
-        optional: true
-
   zod-to-json-schema@3.24.5:
     resolution: {integrity: sha512-/AuWwMP+YqiPbsJx5D6TfgRTc4kTLjsh5SOcd4bLsfUg2RcEXrFMJl1DGgdHy2aCfsIA/cr/1JM0xcB2GZji8g==}
     peerDependencies:
@@ -499,15 +477,9 @@ snapshots:
 
   '@types/long@4.0.2': {}
 
-  '@types/node@10.17.60': {}
-
   '@types/node@20.17.28':
     dependencies:
       undici-types: 6.19.8
-
-  '@types/ws@7.2.5':
-    dependencies:
-      '@types/node': 20.17.28
 
   accepts@2.0.0:
     dependencies:
@@ -663,17 +635,11 @@ snapshots:
 
   function-bind@1.1.2: {}
 
-  futu-api@1.2.9:
+  futu-api@9.1.5108:
     dependencies:
-      '@types/ws': 7.2.5
       bytebuffer: 5.0.1
-      loglevel: 1.6.8
       long: 4.0.0
-      protobufjs: 6.8.8
-      ws: 7.3.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
+      protobufjs: 6.11.4
 
   get-intrinsic@1.3.0:
     dependencies:
@@ -721,8 +687,6 @@ snapshots:
 
   isexe@2.0.0: {}
 
-  loglevel@1.6.8: {}
-
   long@3.2.0: {}
 
   long@4.0.0: {}
@@ -767,7 +731,7 @@ snapshots:
 
   pkce-challenge@4.1.0: {}
 
-  protobufjs@6.8.8:
+  protobufjs@6.11.4:
     dependencies:
       '@protobufjs/aspromise': 1.1.2
       '@protobufjs/base64': 1.1.2
@@ -780,7 +744,7 @@ snapshots:
       '@protobufjs/pool': 1.1.0
       '@protobufjs/utf8': 1.1.0
       '@types/long': 4.0.2
-      '@types/node': 10.17.60
+      '@types/node': 20.17.28
       long: 4.0.0
 
   proxy-addr@2.0.7:
@@ -905,8 +869,6 @@ snapshots:
       isexe: 2.0.0
 
   wrappy@1.0.2: {}
-
-  ws@7.3.0: {}
 
   zod-to-json-schema@3.24.5(zod@3.24.2):
     dependencies:

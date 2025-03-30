@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc && chmod +x build/index.js",
     "start": "node build/index.js",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "test": "tsc && node src/index.test.js"
   },
   "keywords": [
     "mcp",
@@ -20,7 +21,7 @@
     "@modelcontextprotocol/sdk": "^1.0.0",
     "@types/node": "^20.0.0",
     "dayjs": "^1.11.13",
-    "futu-api": "^1.0.0",
+    "futu-api": "^9.1.5108",
     "typescript": "^5.0.0"
   }
 }

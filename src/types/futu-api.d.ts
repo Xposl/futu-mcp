@@ -1,5 +1,6 @@
-declare module 'futu-api' {
 
+declare module 'futu-api' {
+  
   // 接口返回
   interface Response<T> {
     retType: Common.RetType;
@@ -8,9 +9,23 @@ declare module 'futu-api' {
     s2c: T;
   }
 
-  // 导入协议
-  export namespace Qot_Common {
-    export enum QotMarket {
+  declare namespace Common {
+    enum RetType {
+      // 成功
+      RetType_Succeed = 0,
+      // 失败
+      RetType_Failed = -1,
+      // 超时
+      RetType_TimeOut = -100,
+      RetType_DisConnect = -200,
+      // 未知结果
+      RetType_Unknown = -400,
+      RetType_Invalid = -500
+    }
+  }
+  
+  declare namespace Qot_Common {
+    enum QotMarket {
       // 未知
       QotMarket_Unknown = 0,
       // 香港市场
@@ -36,14 +51,14 @@ declare module 'futu-api' {
       // 外汇市场
       QotMarket_FX_Security = 81,
     }
-
+    
     export type Security = {
       // 股票市场
       market: QotMarket
       // 股票代码
       code: string
     }
-
+    
     export enum KLType {
       // 未知
       KLType_Unknown = 0,
@@ -70,7 +85,7 @@ declare module 'futu-api' {
       // 季度线
       KLType_Quarter = 11,
     }
-
+    
     export enum KLFields {
       KLFields_None = 0,
       KLFields_High = 1,
@@ -84,9 +99,9 @@ declare module 'futu-api' {
       KLFields_PE = 256,
       KLFields_ChangeRate = 512
     }
-
-
-    export type KLine = {
+    
+    
+    type KLine = {
       // 时间戳字符串（格式：yyyy-MM-dd HH:mm:ss）
       time: string;
       // 是否是空内容的点,若为 true 则只有时间信息
@@ -114,8 +129,8 @@ declare module 'futu-api' {
       // 时间戳
       timestamp?: number;
     }
-
-    export enum RehabType {
+    
+    enum RehabType {
       // 不复权
       RehabType_None = 0,
       // 前复权
@@ -123,8 +138,8 @@ declare module 'futu-api' {
       // 后复权
       RehabType_Backward = 2
     }
-
-    export enum SubType {
+    
+    enum SubType {
       SubType_None = 0,
       SubType_Basic = 1,
       SubType_OrderBook = 2,
@@ -138,21 +153,6 @@ declare module 'futu-api' {
       SubType_KL_1Min = 11,
       SubType_KL_Week = 12,
       SubType_KL_Month = 13
-    }
-  }
-
-  export namespace Common {
-    export enum RetType {
-      // 成功
-      RetType_Succeed = 0,
-      // 失败
-      RetType_Failed = -1,
-      // 超时
-      RetType_TimeOut = -100,
-      RetType_DisConnect = -200,
-      // 未知结果
-      RetType_Unknown = -400,
-      RetType_Invalid = -500
     }
   }
 
@@ -196,6 +196,8 @@ declare module 'futu-api' {
 
   // 导出默认类
   export default class ftWebsocket {
+    default: any
+    
     constructor();
 
     // 连接方法

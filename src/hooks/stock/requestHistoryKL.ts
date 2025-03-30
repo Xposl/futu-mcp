@@ -1,7 +1,8 @@
-import { ApiRequest, Common } from 'futu-api'
-import futuClient, { connect, disconnect } from '../utils.js'
-import { KLType, Market, MarketMap, getMapData } from '../params.js'
+import { connect, disconnect } from '../utils.js'
+import { KLType, KLTypeMap, Market, MarketMap, getMapData } from '../params.js'
 import dayjs from 'dayjs'
+import { ApiRequest } from "futu-api";
+
 
 export const name = 'request_history_kl'
 export const toolDefine = {
@@ -53,16 +54,20 @@ export const toolDefine = {
 export const fetchRequestHistoryKL = async (req: ApiRequest.RequestHistoryKL) => {
   try {
     await connect()
-    const { retMsg, retType,s2c } = await futuClient.websocket.RequestHistoryKL(req)
-    await disconnect()
-    if(retType == Common.RetType.RetType_Succeed){
-      return s2c
-    } else {
-      throw new Error('RequestHistoryKL error'+retMsg)
+    // const { retMsg, retType,s2c } = await futuClient.websocket.RequestHistoryKL(req)
+    // if(retType == Common.RetType.RetType_Succeed){
+    //   return s2c
+    // } else {
+    //   throw new Error('RequestHistoryKL error'+retMsg)
+    // }
+    return {
+      klList: [] as any[]
     }
   } catch (error) {
     console.error('Error connecting to FutuOpenD:', error);
     throw error;
+  } finally {
+    disconnect()
   }
 }
 
@@ -83,13 +88,16 @@ export const mcpCall = async (request:McpRequest<{
           market: getMapData(MarketMap, market),
           code,
         },
-        beginTime:dayjs(startTime).format('yyyy-MM-dd'),
-        endTime: dayjs(endTime).format('yyyy-MM-dd'),
-        maxAckKLNum: maxAckKLNum || 0,
-        klType: getMapData(KLType, ktype),
+        beginTime:dayjs(startTime).format('YYYY-MM-DD'),
+        endTime: dayjs(endTime).format('YYYY-MM-DD'),
+        klType: getMapData(KLTypeMap, ktype),
       }
     }
+    if(maxAckKLNum != null) {
+      req.c2s.maxAckKLNum = Math.max(1, maxAckKLNum)
+    }
     const { klList } = await fetchRequestHistoryKL(req)
+   
     if (klList && klList.length > 0) {
       return {
         content: [
@@ -122,12 +130,12 @@ export const mcpCall = async (request:McpRequest<{
       ],
       isError: true,
     };
-  } catch (e) {
+  } catch (e:any) {
     return {
       content: [
         {
           type: 'text',
-          text: '获取K线数据失败',
+          text: '获取K线数据失败:'+ e.message,
         },
       ],
       isError: true,
