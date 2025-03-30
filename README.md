@@ -1,128 +1,154 @@
-# Futu Stock Screener MCP Service
+# Futu Stock Screener
 
-基于富途OpenAPI的股票选股MCP服务，支持按市值、PE、成交量等条件筛选港股、美股、A股。
+基于富途API的股票筛选MCP服务，使用Model Context Protocol (MCP)来提供股票数据查询功能。
 
-## 前置要求
+## 项目概述
 
-1. 安装并运行富途OpenD
-2. Node.js 16+
+该项目是一个基于富途API的股票数据查询工具，采用MCP协议封装了富途API的功能，目前实现了获取股票历史K线数据的功能。
 
-## 安装
+### 主要特性
 
+- 支持连接到富途OpenD交易网关
+- 提供股票历史K线数据查询
+- 支持多种市场：香港(HK)、美国(US)、上海(SH)、深圳(SZ)
+- 支持多种K线类型：1分钟、5分钟、15分钟、30分钟、60分钟、日K、周K、月K
+
+## 安装与设置
+
+### 前置要求
+
+- Node.js (推荐v18或更高版本)
+- 富途OpenD交易网关 (需要单独安装并运行)
+- 富途交易账户
+
+### 安装步骤
+
+1. 克隆仓库
 ```bash
 git clone [repository-url]
 cd futu-stock-screener
+```
+
+2. 安装依赖
+```bash
 npm install
+```
+
+3. 构建项目
+```bash
 npm run build
 ```
 
-## 配置
+### 环境变量配置
 
-在MCP设置文件中添加以下配置：
+项目使用以下环境变量来配置富途API连接：
+
+```
+FUTU_HOST=127.0.0.1            # 富途OpenD主机地址
+FUTU_PORT=11111                # 富途OpenD端口
+FUTU_WEBSOCKET_PORT=33333      # 富途OpenD WebSocket端口
+FUTU_WEBSOCKET_KEY=your-key    # 富途WebSocket连接密钥
+```
+
+可以通过环境变量或在运行时参数配置这些值。
+
+## 使用方法
+
+### 启动服务
+
+```bash
+npm start
+```
+
+### 作为MCP服务使用
+
+该项目可以作为MCP服务连接到支持MCP协议的应用中。在MCP配置中添加以下内容：
 
 ```json
 {
   "mcpServers": {
-    "futu-stock-screener": {
+    "futu-stock": {
       "command": "node",
-      "args": ["/absolute/path/to/futu-stock-screener/build/index.js"],
+      "args": ["path-to-project/build/index.js"],
       "env": {
-        "FUTU_HOST": "localhost",  // FutuOpenD主机地址
-        "FUTU_PORT": "11111"       // FutuOpenD端口
+        "FUTU_HOST": "127.0.0.1",
+        "FUTU_PORT": "11111",
+        "FUTU_WEBSOCKET_PORT": "33333",
+        "FUTU_WEBSOCKET_KEY": "your-key"
       }
     }
   }
 }
 ```
 
-## 使用示例
+## 工具功能
 
-服务提供以下工具：
+### request_history_kl
 
-### get_stock_history
+获取股票的历史K线数据。
 
-获取股票历史K线数据。
+#### 参数
 
-参数:
-- market: 股票市场代码（'HK'/'US'/'SH'/'SZ'）
-- code: 股票代码
-- days: 获取天数，默认30天，最大90天
-- ktype: K线类型，可选值：K_1M(1分钟)、K_5M、K_15M、K_30M、K_60M、K_DAY(日线)、K_WEEK(周线)、K_MON(月线)，默认日线
+- `market`：股票市场 (必需，枚举值：HK, US, SH, SZ)
+- `code`：股票代码 (必需)
+- `startTime`：开始时间 (必需，格式：YYYY-MM-DD)
+- `endTime`：结束时间 (必需，格式：YYYY-MM-DD)
+- `ktype`：K线类型 (可选，默认：K_DAY，枚举值：K_1M, K_5M, K_15M, K_30M, K_60M, K_DAY, K_WEEK, K_MON)
+- `maxAckKLNum`：最大返回K线数量 (可选)
 
-示例:
+#### 示例
 
 ```json
 {
   "market": "HK",
   "code": "00700",
-  "days": 30,
+  "startTime": "2024-03-01",
+  "endTime": "2024-03-30",
   "ktype": "K_DAY"
 }
 ```
 
-结果将返回指定时间段内的K线数据，包含开盘价、收盘价、最高价、最低价、成交量等信息。
+## 开发
 
-### get_stock_info
+### 项目结构
 
-获取单个股票的详细信息。
-
-参数:
-- market: 股票市场代码（'HK'/'US'/'SH'/'SZ'）
-- code: 股票代码
-
-示例:
-
-```json
-{
-  "market": "HK",
-  "code": "00700"
-}
+```
+futu-stock-screener/
+├── src/
+│   ├── hooks/
+│   │   ├── enum/
+│   │   │   ├── common.ts
+│   │   │   └── qot_common.ts
+│   │   ├── stock/
+│   │   │   └── requestHistoryKL.ts
+│   │   ├── enum.ts
+│   │   ├── mcp.ts
+│   │   ├── params.ts
+│   │   └── utils.ts
+│   ├── types/
+│   │   ├── futu-api.d.ts
+│   │   └── typing.d.ts
+│   ├── index.test.js
+│   └── index.ts
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-结果将返回该股票的详细信息，包含名称、当前价格、市值、PE、成交量等信息。
+### 开发命令
 
-### screen_stocks
+- `npm run build`：构建项目
+- `npm start`：启动服务
+- `npm run dev`：以监听模式编译TypeScript文件
+- `npm test`：运行测试
 
-基于给定条件筛选股票。
+## 未来计划
 
-参数：
-- market: 股票市场代码（'HK'/'US'/'SH'/'SZ'）
-- filters: 筛选条件
-  - marketCap: 市值范围（单位：亿）
-    - min: 最小市值
-    - max: 最大市值
-  - pe: 市盈率范围
-    - min: 最小市盈率
-    - max: 最大市盈率
-  - volume: 成交量范围
-    - min: 最小成交量
-    - max: 最大成交量
+- [ ] 添加更多富途API功能
+- [ ] 支持实时行情订阅
+- [ ] 提供股票筛选功能
+- [ ] 优化连接管理机制
 
-示例：
+## 许可证
 
-```json
-{
-  "market": "HK",
-  "filters": {
-    "marketCap": {
-      "min": 100,
-      "max": 1000
-    },
-    "pe": {
-      "min": 5,
-      "max": 20
-    },
-    "volume": {
-      "min": 1000000
-    }
-  }
-}
-```
-
-结果将返回符合条件的股票列表，包含代码、名称、市值、PE、成交量等信息。
-
-## 注意事项
-
-1. 使用前需确保FutuOpenD正在运行且配置正确
-2. 建议在非交易时段进行大量数据查询
-3. 注意API调用频率限制
+ISC
