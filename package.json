@@ -1,0 +1,26 @@
+{
+  "name": "futu-stock-screener",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "start": "node build/index.js",
+    "dev": "tsc -w"
+  },
+  "keywords": [
+    "mcp",
+    "futu",
+    "stock-screener"
+  ],
+  "author": "",
+  "license": "ISC",
+  "description": "A Futu API based stock screener MCP service",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "@types/node": "^20.0.0",
+    "dayjs": "^1.11.13",
+    "futu-api": "^1.0.0",
+    "typescript": "^5.0.0"
+  }
+}
